@@ -1,0 +1,23 @@
+body {
+  text-align: center;
+  font-family: "Arial";
+}
+input {
+  @include appearance(none);
+  background: white;
+  border: 1px solid black;
+  height: 50px;
+  width: 50px;
+  font-size: 25px;
+  margin: 5px 3px;
+}
+.undo {
+  display: none;
+  width: 160px;
+  margin: 20px auto 0;
+  border-radius: 5px;
+  padding: 5px;
+  border: 1px solid #c0c0c0;
+  color: white;
+  @include linear-gradient(#888, #575757);
+}
