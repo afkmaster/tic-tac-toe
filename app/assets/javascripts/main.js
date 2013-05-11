@@ -12,6 +12,7 @@ $(window).load(function() {
     $("#player-name").text(playerName);
   }
   function reset() {
+    undoLastMove();
     $("input").each(function() { 
       $(this).attr("value", " ");
     });
@@ -93,6 +94,9 @@ $(window).load(function() {
     board[row][col] = " ";
     var move = lastMove.pop();
     $(move).attr("value", " ");
+    if (lastMove.length == 0) {
+      $(.undo).css("display", "none");
+    }
   }
   $("input").click(function() {
     updateBoard(this);
@@ -104,8 +108,5 @@ $(window).load(function() {
   $(".undo").click(function() {
     undoLastMove();
     updatePlayerTurn();
-    if (lastMove.length == 0) {
-      $(this).css("display", "none");
-    }
   });
 });
