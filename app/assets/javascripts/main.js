@@ -12,7 +12,6 @@ $(window).load(function() {
     $("#player-name").text(playerName);
   }
   function reset() {
-    undoLastMove();
     $("input").each(function() { 
       $(this).attr("value", " ");
     });
@@ -20,6 +19,7 @@ $(window).load(function() {
     moveCount = 0;
     board = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]];
     lastMove = new Array();
+    $("#undo")[0].style.display = "none";
   }
   function updateBoard(square) {
     var marker = (turn % 2 == 0) ? "X" : "O";
@@ -94,19 +94,24 @@ $(window).load(function() {
     board[row][col] = " ";
     var move = lastMove.pop();
     $(move).attr("value", " ");
-    if (lastMove.length == 0) {
-      $(.undo).css("display", "none");
-    }
   }
   $("input").click(function() {
     updateBoard(this);
     checkWinner();
     updatePlayerTurn();
     lastMove.push(this);
-    $(".undo").css("display", "block");
+    $("#undo")[0].style.display = "block";
   });
-  $(".undo").click(function() {
-    undoLastMove();
-    updatePlayerTurn();
+  $("#undo").click(function() {
+    if (moveCount == 0) {
+      $(this)[0].style.display = "none";
+    }
+    else {
+      undoLastMove();
+      updatePlayerTurn();
+      if (lastMove.length == 0) {
+        $(this)[0].style.display = "none";
+      }
+    }
   });
 });
