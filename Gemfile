@@ -20,7 +20,7 @@ end
 group :development, :test do 
   gem 'sqlite3'
 end
-
+gem 'activerecord-postgresql-adapter'
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
